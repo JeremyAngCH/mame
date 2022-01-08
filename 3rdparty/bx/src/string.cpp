@@ -563,10 +563,11 @@ namespace bx
 	StringView strFindNl(const StringView& _str)
 	{
 		StringView str(_str);
+		char n[2] = {'\n' , 0};
 
 		// This method returns the character past the \n, so
 		// there is no need to look for he \r which preceedes it.
-		StringView eol = strFind(str, "\n");
+		StringView eol = strFind(str, n);
 		if (!eol.isEmpty() )
 		{
 			return StringView(eol.getTerm(), str.getTerm() );
@@ -577,12 +578,13 @@ namespace bx
 	StringView strFindEol(const StringView& _str)
 	{
 		StringView str(_str);
+		char rn[3] = {'\r', '\n', 0};
 
 		for (; str.getPtr() != _str.getTerm()
 			 ; str = StringView(min(str.getPtr() + kFindStep, _str.getTerm() ), min(str.getPtr() + kFindStep*2, _str.getTerm() ) )
 			)
 		{
-			StringView eol = strFind(str, "\r\n");
+			StringView eol = strFind(str, rn);
 			if (!eol.isEmpty() )
 			{
 				return StringView(eol.getPtr(), _str.getTerm() );

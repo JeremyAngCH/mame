@@ -191,10 +191,12 @@ int renderer_sdl1::create()
 	SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, sm->sdl_scale_mode_hint);
 
 
+#if 0
 	if (video_config.waitvsync)
 		m_sdl_renderer = SDL_CreateRenderer(std::dynamic_pointer_cast<sdl_window_info>(win)->platform_window(), -1, SDL_RENDERER_PRESENTVSYNC | SDL_RENDERER_ACCELERATED);
 	else
 		m_sdl_renderer = SDL_CreateRenderer(std::dynamic_pointer_cast<sdl_window_info>(win)->platform_window(), -1, SDL_RENDERER_ACCELERATED);
+#endif
 
 	if (!m_sdl_renderer)
 	{
